@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset=”UTF-8″ />
+    <title>Document</title>
+</head>
+<body>
+    <h1>Fundamentos</h1>
+</body>
+
+<script>
+    var hola1 = "hola1" // global
+    let hola2 = "hola2" // local, respeta bloques, siempre usar
+    console.log(hola1)
+    console.log(hola2)
+    console.log(window)
+    console.log(window.hola1)
+
+    console.log('----var----')
+    var musica = "rock"
+
+    console.log('antes', musica)
+    {
+        var musica = "pop"
+        console.log('dentro', musica)
+
+    }
+    console.log('fuera', musica)
+
+    let musica2 = "rock"
+
+    console.log('----let----')
+    console.log('antes', musica2)
+    {
+        let musica2 = "pop"
+        console.log('dentro', musica2)
+
+    }
+    console.log('fuera', musica2)
+
+
+    // == vs ===
+    // usar === es la buena practica
+
+    console.log('==')
+    console.log('7'==7)
+    console.log(7==7)
+    console.log(1==true)
+
+    console.log('===')
+    console.log('7'===7)
+    console.log(7===7)
+    console.log(1===true)
+
+    /* Parametros rest*/
+    function sumar(a, b, ...c) {
+        let resultado = a + b
+        c.forEach(function(n){
+            resultado += n
+        });
+        return resultado
+    }
+
+    console.log(sumar(1, 2, 3, 4,5))
+
+    /*Spread*/
+
+    const arr1 = [1, 2, 3], arr2 = [3, 2, 1]
+
+    arr3 = [arr1, arr2]
+    console.log(arr3)
+
+    arr4 = [...arr1, ...arr2]
+    console.log(arr4)
+
+    /*Arrow functions*/
+    const saludar = (nombre) => console.log("soy arrow function hecha por", nombre);
+    saludar('David');
+
+    const sumar2 = (a, b) => a + b;
+    console.log(sumar2(2, 3))
+
+    const numeros = [1, 2, 3];
+
+    numeros.forEach((el, index) => console.log(el, 'esta en index', index));
+
+    /* Arrow funcion en un objeto puede obtener al objeto padre*/
+    const perro = {
+        nombre: 'goli',
+        ladrar: () => {
+            console.log(this)
+        }
+    }
+
+    perro.ladrar()
+
+    /*Funciones constructoras*/
+
+    function Animal(nombre, sexo) {
+        this.nombre = nombre;
+        this.sexo = sexo
+    }
+
+    /*Mejora de rendimiento, usando prototype*/
+    Animal.prototype.saludar = function() {
+        console.log('hola soy ', this.nombre);
+    }
+
+    Animal.prototype.sonar = function() {
+        console.log('Hago algun sonido');
+    }
+
+    const lola = new Animal('Lola', 'Hembra')
+    console.log(lola)
+    lola.saludar()
+
+    // Herencia prototipica
+    function Perro(nombre, sexo, tamanio) {
+        this.super = Animal
+        this.super(nombre, sexo)
+        this.tamanio = tamanio
+    }
+
+    //Perro esta heredando de Animal
+    Perro.prototype = new Animal();
+    Perro.prototype.constructor = Perro;
+
+    // sobreescritura de metodos del padre en el hijo
+    Perro.prototype.sonar = function () {
+        console.log('mi sonido es un ladrido')
+    }
+
+    Perro.prototype.ladrar = function () {
+        console.log('wow wow')
+    }
+
+    const snoopy = new Perro('Snopy', 'Macho', 'Mediano');
+    
+    console.log(snoopy)
+    snoopy.saludar()
+    snoopy.sonar()
+    snoopy.ladrar()
+//    lola.ladrar()
+
+</script>
+</html>
