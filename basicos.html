@@ -142,5 +142,125 @@
     snoopy.ladrar()
 //    lola.ladrar()
 
+    class Animal2{
+        constructor (nombre, sexo) {
+            this.nombre = nombre
+            this.sexo = sexo
+
+        }
+
+
+        saludar() {
+        console.log('hola soy ', this.nombre);
+        }
+        sonar() {
+            console.log('Hago algun sonido');
+        }
+    }
+
+    mimi = new Animal2('Mimi', 'Hembra')
+//    scooby = new Animal2('Scooby', 'Macho')
+
+    console.log(mimi)
+    mimi.saludar()
+    mimi.sonar()
+//    console.log(scooby)
+//    scooby.saludar()
+//    scooby.sonar()
+
+    class Perro2 extends Animal2 {
+        constructor (nombre, sexo, tamanio) {
+            super(nombre, sexo)
+            this.tamanio = tamanio
+            this.raza = null
+        }
+
+        sonar(){
+            console.log('shagy, on tas?')
+        }
+        ladrar(){
+            console.log('wowowow')
+        }        
+
+            //Un metodo estatico se puede ejecutar sin la necesidar de insanciar una clase
+        static queEres(){
+            console.log('un ser vivo');
+        };
+
+        //get
+        get getRaza(){
+            return this.raza
+        }
+        
+        //set
+        set setRaza(raza) {
+            this.raza = raza
+        }
+    }
+
+
+    const scooby = new Perro2('Scooby', 'Macho', 'grande')
+    console.log(scooby)
+    scooby.sonar()
+    scooby.ladrar()
+
+    Perro2.queEres();
+
+    console.log(scooby.getRaza)
+
+    scooby.setRaza = "gran danes"
+    console.log(scooby.getRaza)
+
+    console.log(console)
+    console.clear()
+
+    /*El objeto window representa la ventana que contiene un 
+    documento DOM;*/
+    console.log(window);
+    /*DOcument es la representación del dooc html atraves de javascript
+    */
+    console.log(document);
+
+    console.dir(window);
+    console.dir (document);
+
+    console.time('Calculo')
+    console.log('test')
+    console.timeEnd('Calculo')
+
+    //fecha
+
+    console.log(Date())
+
+    let fecha = new Date();
+    console.log(fecha)
+    console.log(fecha.getDate())
+    console.log(fecha.getDay())
+    console.log(fecha.getMonth())
+    console.log(fecha.getFullYear())
+    console.log(fecha.toLocaleString())
+
+    /*MAHT*/
+
+    console.log(Math.PI)
+
+    /*CORTO CIRCUITO*/
+
+    console.log('corto cicuito')
+    /* OR: SI IZQUIERDA ES TRUE, LO CARGA*/
+    console.log(true || 'we 1')
+    console.log(false || 'we 2')
+    /* AND: SI IZQUIERDA ES FALSE, LO CARGA*/
+    console.log(false && 'we 3')
+    console.log(true && 'we 4')
+
+    /*Clase 30*: Alter, confirm y prompt*/
+
+//    let a = alert('esto es una alerta'), c = confirm('esto  es una confirmacion'), p = prompt("esto es un prompt")
+
+//    console.log(a)
+//    console.log(c)
+//    console.log(p)
+
 </script>
 </html>
