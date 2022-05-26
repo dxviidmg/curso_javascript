@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function contarCaracteres (cadena) {
+        let r = cadena.length;
+        return r
+
+    };
+    console.log(contarCaracteres('Hola mundo'));
+
+    const contarCaracteresv2 = (cadena = "") => {
+        return (!cadena ? console.warn("no hay cadena"): cadena.length)
+    }
+    console.log(contarCaracteresv2('Hola mundo'));
+
+    function recortarTexto(cadena, index){
+        let r = cadena.slice(0, index);
+        return r
+
+    }
+    console.log(recortarTexto('Hola mundo', 4));
+
+
+    const recortarTextov2 = (cadena = "", longitud = undefined) => 
+        (!cadena) 
+            ? console.warn("no hay cadena")
+            :(longitud === undefined)
+                ? console.warn("no hay logitud")
+                :cadena.slice(0, longitud);
+
+    console.log(recortarTextov2('Hola mundo', 4));
+    console.log(recortarTextov2('Hola mundo'));
+    console.log(recortarTextov2('', 4));
+
+
+
+    function separarPalabras(cadena){
+        let r = cadena.split(" ");
+        return r
+
+    }
+    console.log(separarPalabras('Hola mundo'));
+
+
+
+    const separarPalabrasv2 = (cadena = "") => {
+        return (!cadena ? console.warn("no hay cadena"): cadena.split(" "))
+    }
+    console.log(separarPalabrasv2('Hola mundo v2'));
+
+    function repetirTexto(cadena, veces){
+        r = ''
+        for (let index = 0; index < veces; index++) {
+            r += cadena + " "
+            
+        }
+        return r;
+    }
+    console.log(repetirTexto('Hola mundo', 3));
+
+    const repetirTextov2 = (cadena = "", veces = undefined) =>{
+        if (!cadena) return console.warn('no hay cadena');
+
+        if (veces === undefined) return console.warn('no hay veces')
+
+        for (let index = 1; index <= veces; index++) console.log(cadena)
+        return r;
+    }
+    console.log(repetirTexto('Hola mundo', 3));
+
+
+
+    console.clear()
+    // Parte 2
+
+    const invertirLetras = (cadena="") =>
+        (!cadena) ?
+        console.log("no hay cadena xd"): console.log(cadena.split("").reverse().join(""))
+
+    invertirLetras('Hola mundo cruel')
+
+    const contarPalabras = (texto="", palabra="") => {
+        if(!texto) return "no hay no hay texto";
+        if(!palabra) return "no hay palabra"
+
+        texto_split = texto.split(" ")
+        console.log(texto_split)
+
+        c = 0
+        texto_split.forEach(element => {
+            c++
+        });
+
+        return c
+    }
+    
+    console.log(contarPalabras('hola hola', 'hola'))
+
+    const esPalindromo = (texto = "") => {
+        if(!texto) return "no hay no hay texto";
+
+        al_reves = texto.split("").reverse().join("")
+        return texto === al_reves ?
+            true: false
+    }
+
+    console.log(esPalindromo("ana"))
+
+    const eliminaPatron = (texto="", patron="") => {
+        (!texto)
+            ? console.log("no hay texto")
+            : (!patron)
+            ? console.log("no hay patron")
+            : console.log(texto.replace(new RegExp(patron, "ig"), ""))
+
+    }
+
+    eliminaPatron("xyz1 Xyz2", 'xyz')
+
+    const numAleatorio = () => console.log(Math.round(Math.random()*100) + 500)
+    numAleatorio()
+
+    const esCapiscua =(n) => {
+        if (!n) return 'no existe n'
+        if (typeof n != "number") return 'no es un numero'
+        
+        n = n.toString()
+        let n_al_reves = n.split("").reverse().join("")
+        return n === n_al_reves ?
+            true: false
+    }
+    
+    console.log(esCapiscua(12))
+    console.log(esCapiscua(121))
+    console.log(esCapiscua())
+    console.log(esCapiscua('ww'))
+
+    const factorial = (n) => {
+        if (!n) return 'no existe n'
+        if (typeof n != "number") return 'no es un numero'
+        
+        console.log(n)
+
+        f = 1
+        for (let i = n; i > 1; i--) {
+            console.log(i)
+            f *= i
+            
+        }
+
+        return f
+    }
+
+    console.log(factorial(5))
+
+    const esPrimo = (n) => {
+        if (!n) return 'no existe n'
+        if (typeof n != "number") return 'no es un numero'
+
+        for (let index = 2; index < n; index++) {
+            if (n % index === 0) {
+                return false
+            }
+                        
+        }
+        return true
+    }
+
+    console.log(esPrimo(13))
+
+
+
+
+    class Pelicula {
+        constructor ({id, titulo, director, estreno, pais, generos, calificacion}) {
+            this.id = id
+            this.titulo = titulo
+            this.director = director
+            this.estreno = estreno
+            this.pais = pais
+            this.generos = generos
+            this.calificacion = calificacion
+
+            this.validarIMDB(id)
+            this.validarTitulo(titulo)
+            this.validarDirector(director)
+            this.validarEstreno(estreno)
+            this.validarPais(pais)
+            this.validarGeneros(generos)
+            this.validarCalificacion(calificacion)
+        }
+
+        static get listaGeneros(){
+            return ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime",	 "Documentary",
+            "Drama", "Family", "Fantasy", "Film Noir", "History",	 "Horror", "Music", "Musical", "Mystery",
+            "Romance", "Sci-Fi", "Short Film", "Sport", "Superhero", "Thriller", "War", "Western"];
+        }
+
+        static generosPermitidos(){
+            return console.info('Los generos permitidos son', Pelicula.listaGeneros.join(", "))
+        }
+        validarCadena(propiedad, valor) {
+            if (!valor) return console.warn(propiedad, 'esta vacio')
+            if (typeof valor !== "string") return console.warn(propiedad, "no es una cadena, es", valor)
+
+            return true
+        }
+
+        validarLongitudCadena(propiedad, valor, longitud_maxima) {
+            if (valor.length > longitud_maxima) return console.warn(propiedad, valor, "Numero maximo de caracteres rebasado", longitud_maxima)
+
+            return true
+        }
+
+        validarNumero(propiedad, valor) {
+            if (!valor) return console.warn(propiedad, 'esta vacio')
+            if (typeof valor !== "number") return console.warn(propiedad, "no es una numero, es", valor)
+
+            return true
+        }
+
+
+        validarArreglo(propiedad, valor) {
+            if (!valor) return console.warn(propiedad, 'esta vacio')
+            if (!Array.isArray(valor)) return console.warn(propiedad, "no es un arreglo, es", valor)
+            if (valor.length === 0) return console.log('arreglo vacio', propiedad)
+
+            valor.forEach(element => {
+                if (typeof element !== "string") return console.warn('elemento', element, 'no es un string en ', propiedad)
+            });
+
+            return true
+        }
+        
+
+        validarIMDB(id){
+            if (this.validarCadena('IMDB', id)){
+                if (!(/^([a-z]){2}([0-9]){7}$/.test(id))) {
+                    return console.error('IMDB no cumple con formato, necesitas 2 letras y 7 numeros')
+                }
+            }
+        }
+
+        validarTitulo(titulo){
+            if (this.validarCadena('Titulo', titulo)){
+                this.validarLongitudCadena("Titulo", titulo, 100)
+            }
+        }
+
+        validarDirector(director){
+            if (this.validarCadena('Director', director)){
+                this.validarLongitudCadena("Director", director, 50)
+            }
+        }
+
+        validarEstreno(estreno){
+            if (this.validarNumero('Estreno', estreno)){
+                if (!(/^([0-9]){4}$/.test(estreno))) {
+                    return console.error('Estreno no cumple con formato, necesitas 4 numeros')
+                }
+            }
+        }
+
+        validarPais(pais){
+            this.validarArreglo("Pais", pais)
+        }
+
+        validarGeneros(generos){
+            if (this.validarArreglo("genero", generos)){
+                for (const genero of generos) {
+                    if (!Pelicula.listaGeneros.includes(genero)){
+                        console.error('genero(s) incorrectos')
+                        Pelicula.generosPermitidos();
+                    }
+                    
+                }
+            }
+        }
+
+
+        validarCalificacion(calificacion){
+            if (this.validarNumero('Calificacion', calificacion)){
+                return (calificacion < 0 || calificacion > 10)
+                ? console.error('calificacion entre 1 y 10')
+                : this.calificacion = calificacion.toFixed(1);
+            }
+        }
+
+        fichaTecnica(){
+            console.info("Ficha tecnica\nTitulo:", this.titulo, "\nDirector:", this.director, "\nAño:", this.estreno, "\nPais", this.pais.join(""), "\nGeneros:", this.generos.join(", "), "\nCalificacion:", this.calificacion, "\nIMDB:", this.id)
+        }
+
+    }
+
+
+    Pelicula.generosPermitidos();
+
+    const peli = new Pelicula({
+        id: 'aa1234567',
+        titulo: 'Gol',
+        director: 'yo',
+        estreno: 2000,
+        pais: ['Mexico'],
+        generos: ['Action'],
+        calificacion: 1
+    })
+
+    peli.fichaTecnica()
+
+
+    const pelis = [
+    {
+        id: 'aa1111111',
+        titulo: 'Titanic',
+        director: 'NPI',
+        estreno: 2000,
+        pais: ['USA'],
+        generos: ['Action'],
+        calificacion: 10
+    },
+    {
+        id: 'bb2222222',
+        titulo: 'Kungu panda',
+        director: 'Un panda',
+        estreno: 2007,
+        pais: ['China'],
+        generos: ['Adventure'],
+        calificacion: 9
+    },
+    {
+        id: 'cc3333333',
+        titulo: 'Gol',
+        director: 'Messi',
+        estreno: 2020,
+        pais: ['Argentina'],
+        generos: ['Sport'],
+        calificacion: 7
+    }
+    ]
+
+    pelis.forEach(el => new Pelicula(el).fichaTecnica());
+
+</script>
+</body>
+</html>

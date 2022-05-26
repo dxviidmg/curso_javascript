@@ -1,0 +1,1 @@
+console.log('mi navergador no soporta ES6')
